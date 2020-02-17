@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/sh
+## This file is executed during VNC server
+## startup.
+
+# Make sure that current directory is HOME.
+cd "$HOME"
+
+# Prepare environment variables.
+export XDG_CONFIG_DIRS="${LOCAL_PREFIX}/etc/xdg:${PREFIX}/etc/xdg"
+export XDG_DATA_DIRS="${LOCAL_PREFIX}/share:${PREFIX}/share"
+
+# Launch XFCE.
+xfce4-session &
