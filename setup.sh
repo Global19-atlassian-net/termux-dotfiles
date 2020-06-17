@@ -23,10 +23,6 @@ if [[ "$CHOICE" != [Yy] ]]; then
 	exit 1
 fi
 
-echo
-echo "[@] Installing script dependencies:"
-pkg install -y x11-repo
-
 if [ -f "$SCRIPT_DIR/packages.txt" ]; then
 	echo
 	echo "[@] Installing necessary packages:"
@@ -72,7 +68,18 @@ if [ -d "$SCRIPT_DIR/prefix-files" ]; then
 	}
 fi
 
+# Request permission for shared storage access.
+termux-setup-storage
+
+# Symlink to Alpine Term shared storage.
+# https://github.com/xeffyr/alpine-term
+if [ -d "/sdcard/Android/data/alpine.term/files" ]; then
+	echo
+	echo "[@] Creating symlink \${HOME}/alpine-term --> /sdcard/Android/data/alpine.term/files"
+	ln -sf "/sdcard/Android/data/alpine.term/files" "${HOME}/alpine-term"
+fi
+
 echo
-echo "Done ! Now you need to restart Termux."
+echo "Done! Now you need to restart Termux."
 sleep 1
-killall com.termux > /dev/null 2>&1
+am stopservice com.termux/.app.TermuxService
