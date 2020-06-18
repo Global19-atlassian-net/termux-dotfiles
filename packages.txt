@@ -15,6 +15,7 @@ jq
 lzip
 man
 nano
+netcat
 openssh
 p7zip
 par2
