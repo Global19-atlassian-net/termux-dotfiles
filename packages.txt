@@ -1,9 +1,9 @@
 bsdtar
 build-essential
+croc
 exiftool
 fastmod
 ffmpeg
-ffsend
 file
 gdb
 git
