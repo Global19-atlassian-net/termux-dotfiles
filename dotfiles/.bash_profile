@@ -4,8 +4,8 @@
 export HOME PREFIX TMPDIR
 
 export LOCAL_PREFIX="$HOME/.local"
-export PATH="$LOCAL_PREFIX/bin:$HOME/bin:$PREFIX/bin:$PREFIX/bin/applets"
-export EDITOR="$PREFIX/bin/nano"
+export PATH="${LOCAL_PREFIX}/bin:${HOME}/bin:${PREFIX}/bin"
+export EDITOR="${PREFIX}/bin/nano"
 
 ## Load bashrc if shell is interactive.
 if [[ "$-" == *"i"* ]]; then

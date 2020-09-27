@@ -7,7 +7,7 @@ shopt -s histappend
 shopt -s histverify
 
 ## Configure bash history.
-export HISTFILE="$HOME/.bash_history"
+export HISTFILE="${HOME}/.bash_history"
 export HISTSIZE=512
 export HISTFILESIZE=512
 export HISTCONTROL="ignoreboth"
@@ -22,17 +22,15 @@ PS4='+ '
 ## Terminal title.
 case "$TERM" in
 	xterm*|rxvt*)
-		PS1="\\[\\e]0;termux: \\w\\a\\]$PS1"
+		PS1="\\[\\e]0;termux: \\w\\a\\]${PS1}"
 		;;
 	*)
 		;;
 esac
 
 ## Colorful output & useful aliases for 'ls' and 'grep'.
-if [ -x "$PREFIX/bin/dircolors" ] && [ -n "$LOCAL_PREFIX" ]; then
-	if [ -f "$LOCAL_PREFIX/etc/dircolors.conf" ]; then
-		eval "$(dircolors -b "$LOCAL_PREFIX/etc/dircolors.conf")"
-	fi
+if [ -f "${HOME}/.dircolors.conf" ]; then
+	eval "$(dircolors -b "${HOME}/.dircolors.conf")"
 fi
 
 ## Colored output.

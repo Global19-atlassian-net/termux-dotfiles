@@ -1,14 +1,13 @@
 # Termux dotfiles
 
 [Termux](https://github.com/termux/termux-app) configuration used on my devices.
+It is very minimal. I do not use various fancy setups for shell and do not need
+too much packages for the Android terminal emulator.
 
 Termux styling:
 
 * Colors: Base16 Brewer
 * Font: Inconsolata LGC
-
-Old configuration with XFCE desktop setup can be obtained by downloading
-[v2020.02.17.tar.gz](https://github.com/xeffyr/termux-dotfiles/archive/v2020.02.17.tar.gz).
 
 ## Installation
 

@@ -11,26 +11,14 @@ if [ "$(uname -o)" != "Android" ]; then
 	exit 1
 fi
 
-echo
-echo "Installing configuration files and scripts will"
-echo "remove existing ones. Directories like '~/.config'"
-echo "or '~/.local' will be completely erased and replaced."
-echo
-read -re -p "Do you want to proceed ? (y/n): " CHOICE
-
-if [[ "$CHOICE" != [Yy] ]]; then
-	echo "Aborting !"
-	exit 1
-fi
-
-if [ -f "$SCRIPT_DIR/packages.txt" ]; then
+if [ -f "${SCRIPT_DIR}/packages.txt" ]; then
 	echo
 	echo "[@] Installing necessary packages:"
 	pkg install -y $(cat "$SCRIPT_DIR/packages.txt" | grep -vP '^(?:\s+)?#')
 fi
 
 # Just replace objects in $HOME.
-if [ -d "$SCRIPT_DIR/dotfiles" ]; then
+if [ -d "${SCRIPT_DIR}/dotfiles" ]; then
 	echo
 	echo "[@] Writing dotfiles for \$HOME:"
 	while IFS= read -r -d '' file; do
@@ -57,7 +45,7 @@ fi
 if [ -d "$SCRIPT_DIR/prefix-files" ]; then
 	echo
 	echo "[@] Writing dotfiles for \$PREFIX:"
-	cd "$SCRIPT_DIR/prefix-files" && {
+	cd "${SCRIPT_DIR}/prefix-files" && {
 		while IFS= read -r -d '' file; do
 			file=$(echo "$file" | sed 's/^\.\///')
 			echo "Installing file '\${PREFIX}/${file}'..."
@@ -73,10 +61,10 @@ termux-setup-storage
 
 # Symlink to Alpine Term shared storage.
 # https://github.com/xeffyr/alpine-term
-if [ -d "/sdcard/Android/data/alpine.term/files" ]; then
+if [ -d "/storage/self/primary/Android/data/alpine.term/files" ]; then
 	echo
-	echo "[@] Creating symlink \${HOME}/alpine-term --> /sdcard/Android/data/alpine.term/files"
-	ln -sf "/sdcard/Android/data/alpine.term/files" "${HOME}/alpine-term"
+	echo "[@] Creating symlink \${HOME}/alpine-term --> /storage/self/primary/Android/data/alpine.term/files"
+	ln -sf "/storage/self/primary/Android/data/alpine.term/files" "${HOME}/alpine-term"
 fi
 
 echo
