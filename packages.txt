@@ -11,8 +11,6 @@ man
 netcat
 openssh
 openssl-tool
-qemu-system-x86_64-headless
-qemu-utils
 restic
 ripgrep
 rsync
